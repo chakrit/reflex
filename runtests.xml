@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunTests" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask AssemblyFile="C:\Program Files\Gallio\bin\Gallio.MsBuildTasks.dll" TaskName="Gallio"/>
+  <ItemGroup>
+    <TestFile Include="$(MSbuildProjectDirectory)\Reflex.Tests\bin\ReleaseNoAg\Reflex.Tests.dll" />
+  </ItemGroup>
+  <Target Name="RunTests">
+    <MSBuild RebaseOutputs="false"
+             Projects="Reflex.Tests\Reflex.Tests.csproj"
+             Properties="OutputPath=$(MSBuildProjectDirectory)\Reflex.Tests\bin\ReleaseNoAg;Configuration=ReleaseNoAg" />
+    <Gallio IgnoreFailures="true" Files="@(TestFile)" Verbosity="Verbose" ShadowCopy="true"
+            RunnerType="Local">
+      <Output TaskParameter="ExitCode" PropertyName="ExitCode" />
+    </Gallio>
+    <Error Text="Tests execution failed" Condition="'$(ExitCode)' != 0" />
+  </Target>
+</Project>

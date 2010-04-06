@@ -1,0 +1,10 @@
+
+
+   Temporary changelog:
+   ====================
+
+   - Implemented and tested Transform.ToNameValue
+   - Added overload for Transform.ToStringDict and Transform.ToNameValue to
+     allow easy conversion between the two kinds of dictionary.
+   - Modified PerfTests output format a bit so its easier to read.
+   - Formatted and removed unused usings directives in many files.
